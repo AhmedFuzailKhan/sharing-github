@@ -1,0 +1,10 @@
+from sklearn import preprocessing
+columns = ['buying','maint','lug_boot','safety','cls']  # columns names where transform is required
+for X in columns:
+  exec(f'le_{X} = preprocessing.LabelEncoder()')  #create label encoder with name "le_X", where X is column name
+  exec(f'df.{X} = le_{X}.fit_transform(df.{X})')  #execute fit transform for column X with respective lable encoder "le_X", where X is column name
+df.head()  # to display transformed results
+
+for X in columns:
+  exec(f'df.{X} = le_{X}.inverse_transform(df.{X})')  #execute inverse_transform for column X with respective lable encoder "le_X", where X is column name
+df.head() # to display Inverse transformed results of df
